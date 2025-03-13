@@ -1,0 +1,131 @@
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.desserts-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.desserts-section {
+  flex: 3;
+}
+
+.cart-section {
+  flex: 1;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+  min-width: 250px;
+}
+
+.desserts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.dessert-card {
+  background: white;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.dessert-card:hover {
+  transform: scale(1.03);
+}
+
+.dessert-card.in-cart {
+  border-color: #ff6600;
+}
+
+.dessert-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.add-to-cart,
+.cart-btn {
+  background: #ff6600;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 16px;
+}
+
+.add-to-cart:hover {
+  background: #e04e2f;
+}
+
+.cart-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.cart-controls button {
+  background-color: #e76f51;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cart-controls span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.cart-list {
+  list-style: none;
+  padding: 0;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: red;
+}
+
+@media (max-width: 768px) {
+  .desserts-container {
+    flex-direction: column;
+  }
+  .desserts-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  .cart-section {
+    width: 100%;
+    text-align: center;
+  }
+}
