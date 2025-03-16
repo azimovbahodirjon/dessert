@@ -1,39 +1,79 @@
 import { createSlice } from "@reduxjs/toolkit";
+import desserts from "../../data";
 
 const initialState = {
-  cartItems: [],
+  desserts,
+  selectedDesserts: [],
+  totalPrice: 0,
+  totalAmount: 0,
+  orderConfirmed: false,
 };
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action) => {
-      const itemIndex = state.cartItems.findIndex(
-        (item) => item.id === action.payload.id
-      );
-      if (itemIndex >= 0) {
-        state.cartItems[itemIndex].quantity += 1;
-      } else {
-        state.cartItems.push({ ...action.payload, quantity: 1 });
-      }
+    addToCart: (state, { payload }) => {
+      state.selectedDesserts.push(payload);
+      cartSlice.caseReducers.calculateTotal(state);
     },
-    removeFromCart: (state, action) => {
-      const itemIndex = state.cartItems.findIndex(
-        (item) => item.id === action.payload
-      );
-      if (itemIndex >= 0) {
-        if (state.cartItems[itemIndex].quantity > 1) {
-          state.cartItems[itemIndex].quantity -= 1;
-        } else {
-          state.cartItems = state.cartItems.filter(
-            (item) => item.id !== action.payload
-          );
-        }
+    increaseQuantity: (state, { payload }) => {
+      const dessert = state.selectedDesserts.find((d) => d.id === payload);
+      if (dessert) {
+        dessert.amount += 1;
       }
+      cartSlice.caseReducers.calculateTotal(state);
+    },
+    decreaseQuantity: (state, { payload }) => {
+      const dessert = state.selectedDesserts.find((d) => d.id === payload);
+      if (dessert && dessert.amount > 1) {
+        dessert.amount -= 1;
+      } else {
+        state.selectedDesserts = state.selectedDesserts.filter(
+          (d) => d.id !== payload
+        );
+      }
+      cartSlice.caseReducers.calculateTotal(state);
+    },
+    removeFromCart: (state, { payload }) => {
+      state.selectedDesserts = state.selectedDesserts.filter(
+        (d) => d.id !== payload
+      );
+      cartSlice.caseReducers.calculateTotal(state);
+    },
+    resetCart: (state) => {
+      state.selectedDesserts = [];
+      state.totalPrice = 0;
+      state.totalAmount = 0;
+      state.orderConfirmed = false;
+    },
+    calculateTotal: (state) => {
+      state.totalAmount = 0;
+      state.totalPrice = 0;
+
+      state.selectedDesserts.forEach((d) => {
+        state.totalPrice += d.amount * d.price;
+        state.totalAmount += d.amount;
+      });
+    },
+    confirmOrder: (state) => {
+      state.orderConfirmed = true;
+    },
+
+    hideOrderConfirmed: (state) => {
+      state.orderConfirmed = false;
     },
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const {
+  addToCart,
+  increaseQuantity,
+  decreaseQuantity,
+  removeFromCart,
+  confirmOrder,
+  hideOrderConfirmed,
+  resetCart,
+} = cartSlice.actions;
+
 export default cartSlice.reducer;

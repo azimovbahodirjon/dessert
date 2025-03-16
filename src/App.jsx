@@ -1,15 +1,18 @@
-import React from "react";
-import { Provider } from "react-redux";
-import store from "./app/store";
-import DessertsList from "./components/DessertsList";
+import { useSelector } from "react-redux";
+import { YourCart, DessertList } from "./components";
 
 function App() {
+  const { desserts, sellectedDsserts, totalAmount, totalPrice } = useSelector(
+    (store) => store.cart
+  );
+  console.log(sellectedDsserts, totalAmount, totalPrice);
   return (
-    <Provider store={store}>
-      <div>
-        <DessertsList />
+    <main>
+      <div className="App-wrapper">
+        <DessertList desserts={desserts} />
+        <YourCart />
       </div>
-    </Provider>
+    </main>
   );
 }
 
