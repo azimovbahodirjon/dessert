@@ -8,7 +8,7 @@ function CartItem({ item }) {
       <div className="item-details">
         <p className="item-name">{item.name}</p>
         <div className="item-info">
-          <p>{item.amount}x</p>
+          <p className="item-quantity">{item.amount}x</p>
           <p>@${item.price}</p>
           <p>${(item.price * item.amount).toFixed(2)}</p>
         </div>

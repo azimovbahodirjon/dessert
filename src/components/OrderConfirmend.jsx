@@ -1,18 +1,7 @@
-import { CiCircleRemove } from "react-icons/ci";
-
 function OrderConfirmed({ items, totalPrice, onClose }) {
-  // Modal ichidagi bosish hodisasini to‘xtatish uchun
-  const handleModalClick = (e) => {
-    e.stopPropagation();
-  };
-
   return (
-    <div className="order-confirmed" onClick={onClose}>
-      <div className="order-confirmed-modal" onClick={handleModalClick}>
-        <button className="close-btn" onClick={onClose}>
-          <CiCircleRemove />
-        </button>
-
+    <div className="order-confirmed">
+      <div className="order-confirmed-modal">
         <img
           className="order-confirmed-icon"
           src="./images/icon-order-confirmed.svg"
