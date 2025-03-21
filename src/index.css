@@ -137,6 +137,35 @@
   --color-secondary: #87635a;
   --color-background: #fcf8f6;
   --font-family: "Red Hat Text", sans-serif;
+  /* Colors */
+  --red: #c7380f;
+  --rose-900: #260f08;
+  --rose-500: #87635a;
+  --rose-400: #ad8a85;
+  --rose-300: #caafa7;
+  --rose-100: #f5eeec;
+  --rose-50: #fcf8f6;
+  --green: #1ea575;
+  --black: #000000;
+  --white: #ffffff;
+  /* Typography */
+  --font-primary: "Red Hat Text", sans-serif;
+  --font-size-1: 56px;
+  --font-size-2: 24px;
+  --font-size-3: 16px;
+  --font-size-4: 14px;
+  --line-height-1: 120%;
+  --line-height-2: 125%;
+  --line-height-3: 150%;
+  /* Spacing */
+  --spacing-1100: 88px;
+  --spacing-500: 40px;
+  --spacing-400: 32px;
+  --spacing-300: 24px;
+  --spacing-200: 16px;
+  --spacing-150: 12px;
+  --spacing-100: 8px;
+  --spacing-50: 4px;
 }
 
 * {
@@ -147,7 +176,7 @@
 
 body {
   font-family: var(--font-family);
-  background-color: #dee2e6;
+  background-color: var(--rose-50);
   height: 100vh;
 }
 
